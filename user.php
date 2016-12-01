@@ -1,19 +1,27 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GUEST</title>
+        <title>USER</title>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body style="background-color: #2196F3;">
-        <p>TOP 10 LIST</p>
+    <body>
+        <div class="row">
+            
+            <div class="col-md-3">
+                <button type="button" class="btn btn-success" data-dismiss="modal">INDONESIA</button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-success" data-dismiss="modal">SEKITAR</button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-success" data-dismiss="modal">TAMBAH</button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-success" data-dismiss="modal">CARI</button>
+            </div>
+        </div>
         <div class="row">
             
             <div class="col-md-1"></div>
@@ -34,6 +42,7 @@ and open the template in the editor.
                 <div>
                     DESKRIPSI
                 </div>
+                <button type="button" class="btn btn-success" data-dismiss="modal">TULIS KOMEN</button>
                 <button type="button" class="btn btn-success" data-dismiss="modal">VIEW KOMEN</button>
             </div>
             <div class="col-md-1"></div>
