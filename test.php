@@ -6,6 +6,7 @@ $dbase = "spk";
 
 $conn = mysqli_connect($server, $username, $password);
 $database = mysqli_select_db($conn, $dbase);
+
 ?>
 <html>
     <head>
@@ -251,7 +252,7 @@ $database = mysqli_select_db($conn, $dbase);
         while ($row = mysqli_fetch_object($result)) {
             $data = $smins[$counter13] / ($smaks[$counter13] + $smins[$counter13]);
             echo "FINAL : " . $data;
-            $hasilakhir["$row->nama"] = $data;
+            $hasilakhir["$row->id"] = $data;
             $counter13++;
         }
         ?>
@@ -260,7 +261,7 @@ $database = mysqli_select_db($conn, $dbase);
         <?php
         arsort($hasilakhir);
         foreach ($hasilakhir as $x => $x_value){
-            echo "Lokasi : ".$x. " Nilai : ".$x_value;
+            echo "ID : ".$x. " Nilai : ".$x_value;
         }
 //        $counter14 = 0;
 //        while ($counter14 != $counter) {
