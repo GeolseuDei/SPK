@@ -1,3 +1,7 @@
+<?php
+require 'connection.php';
+session_start();
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -7,7 +11,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-        
+
         <div class="row">
 
             <div class="col-md-3">
@@ -135,5 +139,34 @@
             </div>
             <div class="col-md-1"></div>
         </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Akses</th>
+                    <th>Kondisi Lingkungan</th>
+                    <th>Hubungan dengan wisata lain</th>
+                    <th>Kondisi cuaca</th>
+                    <th>Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $query = "SELECT * FROM datawisata";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_object($result)) {
+                    echo "<tr>
+                    <td>$row->nama</td>
+                    <td>$row->aksesibilitas</td>
+                    <td>$row->kondisi_lingkungan</td>
+                    <td>$row->hub_dgn_wisata_lain</td>
+                    <td>$row->kondisi_cuaca</td>
+                    <td>$row->biaya</td>
+                </tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </body>
 </html>
