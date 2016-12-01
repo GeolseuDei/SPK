@@ -1,6 +1,11 @@
 <?php
 require 'connection.php';
 session_start();
+$_SESSION["akses"]=50;
+$_SESSION["cuaca"]=50;
+$_SESSION["wisatalain"]=50;
+$_SESSION["ling"]=50;
+$_SESSION["biaya"]=50;
 ?>
 <html>
     <head>
@@ -143,7 +148,7 @@ session_start();
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Matriks/Kriteria</th>
                     <th>Akses</th>
                     <th>Kondisi Lingkungan</th>
                     <th>Hubungan dengan wisata lain</th>
@@ -165,6 +170,31 @@ session_start();
                     <td>$row->biaya</td>
                 </tr>";
                 }
+                ?>
+            </tbody>
+        </table>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bobot</th>
+                    <th>Akses</th>
+                    <th>Kondisi Lingkungan</th>
+                    <th>Hubungan dengan wisata lain</th>
+                    <th>Kondisi cuaca</th>
+                    <th>Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                echo "<tr>
+                    <td></td>
+                    <td>$_SESSION[akses]</td>
+                    <td>$_SESSION[cuaca]</td>
+                    <td>$_SESSION[wisatalain]</td>
+                    <td>$_SESSION[ling]</td>
+                    <td>$_SESSION[biaya]</td>
+                </tr>";
                 ?>
             </tbody>
         </table>

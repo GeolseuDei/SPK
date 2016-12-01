@@ -8,11 +8,12 @@ $dbase = "spk";
 $conn = mysqli_connect($server, $username, $password);
 $database = mysqli_select_db($conn, $dbase);
 
-$wakses = 50;
-$wcuaca = 50;
-$wwisatalain = 50;
-$wling = 50;
-$wbiaya = 50;
+$wakses = $_SESSION[akses];
+$wcuaca = $_SESSION[cuaca];
+$wwisatalain = $_SESSION[wisatalain];
+$wling = $_SESSION[ling];
+$wbiaya = $_SESSION[biaya];
+
 $totalw = $wakses + $wcuaca + $wwisatalain + $wling + $wbiaya;
 
 $bobotnormal[0] = ($wakses / $totalw) * 100;
