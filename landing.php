@@ -51,19 +51,45 @@ and open the template in the editor.
         
 <!--        MODAL-->
         <div id="modallogin" class="modal fade" role="dialog">
+            
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
+                    
                     <div class="modal-header">
+                        
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">LOGIN</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        
+                        <div class="row">
+                            
+                            <div class="col-md-3" style="text-align: right;">
+                                
+                                USERNAME :
+                            </div>
+                            <div class="col-md-9">
+                                
+                                <input type="text" style="width: 100%;"/>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            
+                            <div class="col-md-3" style="text-align: right;">
+                                
+                                PASSWORD :
+                            </div>
+                            <div class="col-md-9">
+                                
+                                <input type="password" style="width: 100%;"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">LOGIN</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
                     </div>
                 </div>
 
