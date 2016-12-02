@@ -76,8 +76,8 @@ while ($counter3 < 5) {
 
 $counter4 = 0;
 while ($counter4 < 5) {
-    $akartotalwisatakuadrat[$counter4] = sqrt($_SESSION['totalwisatakuadrat'][$counter4]);
-    echo "akar" . $akartotalwisatakuadrat[$counter4] . "\n";
+    $_SESSION['akartotalwisatakuadrat'][$counter4] = sqrt($_SESSION['totalwisatakuadrat'][$counter4]);
+    echo "akar" . $_SESSION['akartotalwisatakuadrat'][$counter4] . "\n";
     $counter4++;
 }
 
@@ -85,7 +85,7 @@ $counter5 = 0;
 while ($counter5 < 5) {
     $counter51 = 0;
     while ($counter51 != $counter) {
-        $data = ${"wisata" . $counter51}[$counter5] / $akartotalwisatakuadrat[$counter5];
+        $data = ${"wisata" . $counter51}[$counter5] / $_SESSION['akartotalwisatakuadrat'][$counter5];
         ${"matriksrij" . $counter51}[$counter5] = $data;
         echo "tabel r ij :" . $data;
         $counter51++;

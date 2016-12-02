@@ -279,6 +279,16 @@ while ($row = mysqli_fetch_object($result)) {
             <td><?php echo$_SESSION['totalwisatakuadrat'][2] ?></td>
             <td><?php echo$_SESSION['totalwisatakuadrat'][3] ?></td>
             <td><?php echo$_SESSION['totalwisatakuadrat'][4] ?></td>
+            <?php
+            echo '</tr>';
+            echo '<tr>';
+            ?>
+            <td>Akar Total</td>
+            <td><?php echo$_SESSION['akartotalwisatakuadrat'][0] ?></td>
+            <td><?php echo$_SESSION['akartotalwisatakuadrat'][1] ?></td>
+            <td><?php echo$_SESSION['akartotalwisatakuadrat'][2] ?></td>
+            <td><?php echo$_SESSION['akartotalwisatakuadrat'][3] ?></td>
+            <td><?php echo$_SESSION['akartotalwisatakuadrat'][4] ?></td>
             <?php echo '</tr>';
             ?>
         </tbody>
