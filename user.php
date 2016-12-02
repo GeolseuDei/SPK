@@ -3,12 +3,14 @@ require 'connection.php';
 //require './proseshitungan.php';
 session_start();
 
-$query = "SELECT * FROM datawisata";
-$result = mysqli_query($conn, $query);
-$counternama = 0;
-while ($row = mysqli_fetch_object($result)) {
-    $nama[$counternama] = $row->nama;
-    $counternama++;
+foreach ($_SESSION['selected'] as $id) {
+    $query = "SELECT * FROM datawisata where id=$id";
+    $result = mysqli_query($conn, $query);
+    $counternama = 0;
+    while ($row = mysqli_fetch_object($result)) {
+        $nama[$counternama] = $row->nama;
+        $counternama++;
+    }
 }
 //unset($_SESSION['hasilakhir']);
 ?>
@@ -182,10 +184,11 @@ while ($row = mysqli_fetch_object($result)) {
             </thead>
             <tbody>
                 <?php
-                $query = "SELECT * FROM datawisata";
-                $result = mysqli_query($conn, $query);
-                while ($row = mysqli_fetch_object($result)) {
-                    echo "<tr>
+                foreach ($_SESSION['selected'] as $id) {
+                    $query = "SELECT * FROM datawisata where id = $id";
+                    $result = mysqli_query($conn, $query);
+                    while ($row = mysqli_fetch_object($result)) {
+                        echo "<tr>
                     <td>$row->nama</td>
                     <td>$row->aksesibilitas</td>
                     <td>$row->kondisi_lingkungan</td>
@@ -193,6 +196,7 @@ while ($row = mysqli_fetch_object($result)) {
                     <td>$row->kondisi_cuaca</td>
                     <td>$row->biaya</td>
                 </tr>";
+                    }
                 }
                 ?>
             </tbody>
