@@ -8,23 +8,29 @@ $dbase = "spk";
 $conn = mysqli_connect($server, $username, $password);
 $database = mysqli_select_db($conn, $dbase);
 
-$wakses = $_SESSION[akses];
-$wcuaca = $_SESSION[cuaca];
-$wwisatalain = $_SESSION[wisatalain];
-$wling = $_SESSION[ling];
-$wbiaya = $_SESSION[biaya];
+$_SESSION["akses"]=50;
+$_SESSION["cuaca"]=50;
+$_SESSION["wisatalain"]=50;
+$_SESSION["ling"]=50;
+$_SESSION["biaya"]=50;
 
-$totalw = $wakses + $wcuaca + $wwisatalain + $wling + $wbiaya;
+$_SESSION["totalw"] = $_SESSION["akses"]+$_SESSION["cuaca"]+$_SESSION["wisatalain"]+$_SESSION["ling"]+$_SESSION["biaya"];
 
-$bobotnormal[0] = ($wakses / $totalw) * 100;
-$bobotnormal[1] = ($wling / $totalw) * 100;
-$bobotnormal[2] = ($wwisatalain / $totalw) * 100;
-$bobotnormal[3] = ($wcuaca / $totalw) * 100;
-$bobotnormal[4] = ($wbiaya / $totalw) * 100;
-$_SESSION[totalwn] = $bobotnormal[0] + $bobotnormal[1] + $bobotnormal[2] + $bobotnormal[3] + $bobotnormal[4];
+$wakses = $_SESSION['akses'];
+$wcuaca = $_SESSION['cuaca'];
+$wwisatalain = $_SESSION['wisatalain'];
+$wling = $_SESSION['ling'];
+$wbiaya = $_SESSION['biaya'];
+
+$_SESSION['bobotnormal'][0] = ($wakses / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][1] = ($wling / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][2] = ($wwisatalain / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][3] = ($wcuaca / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][4] = ($wbiaya / $_SESSION['totalw']) * 100;
+$_SESSION['totalwn'] = $_SESSION['bobotnormal'][0] + $_SESSION['bobotnormal'][1] + $_SESSION['bobotnormal'][2] + $_SESSION['bobotnormal'][3] + $_SESSION['bobotnormal'][4];
 
 for ($i = 0; $i < 5; $i++) {
-    echo "bobot normal : " . $bobotnormal[$i];
+    echo "bobot normal : " . $_SESSION['bobotnormal'][$i];
 }
 $query = "SELECT * FROM datawisata";
 $result = mysqli_query($conn, $query);
@@ -91,7 +97,7 @@ $counter6 = 0;
 while ($counter6 < 5) {
     $counter61 = 0;
     while ($counter61 != $counter) {
-        $data = ${"matriksrij" . $counter61}[$counter6] * $bobotnormal[$counter6];
+        $data = ${"matriksrij" . $counter61}[$counter6] * $_SESSION['bobotnormal'][$counter6];
         echo "Matrik VIJ : " . $data;
         ${"matriksvij" . $counter61}[$counter6] = $data;
         $counter61++;

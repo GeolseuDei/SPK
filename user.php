@@ -1,11 +1,7 @@
 <?php
 require 'connection.php';
+require './proseshitungan.php';
 session_start();
-$_SESSION["akses"]=50;
-$_SESSION["cuaca"]=50;
-$_SESSION["wisatalain"]=50;
-$_SESSION["ling"]=50;
-$_SESSION["biaya"]=50;
 ?>
 <html>
     <head>
@@ -183,6 +179,7 @@ $_SESSION["biaya"]=50;
                     <th>Hubungan dengan wisata lain</th>
                     <th>Kondisi cuaca</th>
                     <th>Biaya</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -194,8 +191,34 @@ $_SESSION["biaya"]=50;
                     <td>$_SESSION[wisatalain]</td>
                     <td>$_SESSION[ling]</td>
                     <td>$_SESSION[biaya]</td>
+                    <td>$_SESSION[totalw]</td>
                 </tr>";
                 ?>
+            </tbody>
+        </table>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Bobot Normalisasi</th>
+                    <th>Akses</th>
+                    <th>Kondisi Lingkungan</th>
+                    <th>Hubungan dengan wisata lain</th>
+                    <th>Kondisi cuaca</th>
+                    <th>Biaya</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><?php echo$_SESSION['bobotnormal'][0] ?></td>
+                    <td><?php echo$_SESSION['bobotnormal'][1] ?></td>
+                    <td><?php echo$_SESSION['bobotnormal'][2] ?></td>
+                    <td><?php echo$_SESSION['bobotnormal'][3] ?></td>
+                    <td><?php echo$_SESSION['bobotnormal'][4] ?></td>
+                    <td><?php echo$_SESSION['totalwn'] ?></td>
+                </tr>
             </tbody>
         </table>
     </body>
