@@ -57,7 +57,7 @@ $_SESSION['counterarray'] = 1;
         function del(i) {
             $("#selected").load("selected.php?delid=" + i);
         }
-        function cek(i) {
+        function tambahdata(i) {
             $.post("prosestambahdata.php",
                     {
                         nama: $("#addnama").val(),

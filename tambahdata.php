@@ -154,7 +154,7 @@ require './connection.php';
             </div>
         </div>
         <div style="margin-top: 20px;">
-            <button type="button" class="btn btn-success" onclick="cek();" style="float: right;">SUBMIT</button>
+            <button type="button" class="btn btn-success" onclick="tambahdata();" style="float: right;">SUBMIT</button>
         </div>
     </body>
 </html>
