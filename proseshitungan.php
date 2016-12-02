@@ -54,8 +54,8 @@ while ($counter2 != $counter) {
         $data = ${"wisata" . $counter2}[$counter21];
         echo 'sebelum kuadrat : ' . $data;
         $data = $data * $data;
-        ${"wisatakuadrat" . $counter2}[$counter21] = $data;
-        echo "KUADRAT : " . ${"wisatakuadrat" . $counter2}[$counter21];
+        $_SESSION["wisatakuadrat" . $counter2][$counter21] = $data;
+        echo "KUADRAT : " . $_SESSION["wisatakuadrat" . $counter2][$counter21];
         $counter21++;
     }
     $counter2++;
@@ -66,17 +66,17 @@ while ($counter3 < 5) {
     $counter31 = 0;
     $data = 0;
     while ($counter31 != $counter) {
-        $data+=${"wisatakuadrat" . $counter31}[$counter3];
+        $data+=$_SESSION["wisatakuadrat" . $counter31][$counter3];
         $counter31++;
     }
-    $totalwisatakuadrat[$counter3] = $data;
-    echo "total kuadrat : " . $totalwisatakuadrat[$counter3];
+    $_SESSION['totalwisatakuadrat'][$counter3] = $data;
+    echo "total kuadrat : " . $_SESSION['totalwisatakuadrat'][$counter3];
     $counter3++;
 }
 
 $counter4 = 0;
 while ($counter4 < 5) {
-    $akartotalwisatakuadrat[$counter4] = sqrt($totalwisatakuadrat[$counter4]);
+    $akartotalwisatakuadrat[$counter4] = sqrt($_SESSION['totalwisatakuadrat'][$counter4]);
     echo "akar" . $akartotalwisatakuadrat[$counter4] . "\n";
     $counter4++;
 }

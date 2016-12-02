@@ -2,6 +2,14 @@
 require 'connection.php';
 require './proseshitungan.php';
 session_start();
+
+$query = "SELECT * FROM datawisata";
+$result = mysqli_query($conn, $query);
+$counternama = 0;
+while ($row = mysqli_fetch_object($result)) {
+    $nama[$counternama] = $row->nama;
+    $counternama++;
+}
 ?>
 <html>
     <head>
@@ -221,5 +229,59 @@ session_start();
                 </tr>
             </tbody>
         </table>
-    </body>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Tabel Kuadrat</th>
+                    <th>Akses</th>
+                    <th>Kondisi Lingkungan</th>
+                    <th>Hubungan dengan wisata lain</th>
+                    <th>Kondisi cuaca</th>
+                    <th>Biaya</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $counterkuadrat = 0;
+                while ($counterkuadrat != $counternama) {
+                    echo '<tr>';
+                    ?>
+                <td><?php echo $nama[$counterkuadrat]; ?></td>
+                <td><?php
+                    echo $_SESSION["wisatakuadrat" . $counterkuadrat][0];
+                    ;
+                    ?></td>
+                <td><?php
+                    echo $_SESSION["wisatakuadrat" . $counterkuadrat][1];
+                    ;
+                    ?></td>
+                <td><?php
+                    echo $_SESSION["wisatakuadrat" . $counterkuadrat][2];
+                    ;
+                    ?></td>
+                <td><?php
+                    echo $_SESSION["wisatakuadrat" . $counterkuadrat][3];
+                    ;
+                    ?></td>
+                <td><?php
+                    echo $_SESSION["wisatakuadrat" . $counterkuadrat][4];
+                    ;
+                    ?></td>
+                <?php
+                $counterkuadrat++;
+                echo '</tr>';
+            }echo '<tr>';
+            ?>
+            <td>Total</td>
+            <td><?php echo$_SESSION['totalwisatakuadrat'][0] ?></td>
+            <td><?php echo$_SESSION['totalwisatakuadrat'][1] ?></td>
+            <td><?php echo$_SESSION['totalwisatakuadrat'][2] ?></td>
+            <td><?php echo$_SESSION['totalwisatakuadrat'][3] ?></td>
+            <td><?php echo$_SESSION['totalwisatakuadrat'][4] ?></td>
+            <?php echo '</tr>';
+            ?>
+        </tbody>
+    </table>
+</body>
 </html>
