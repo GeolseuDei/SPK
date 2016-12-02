@@ -38,7 +38,6 @@ if (isset($_GET['id'])) {
                         <div style="border: 1px solid black; margin-left: 20px; margin-right: 20px; margin-bottom: 10px;">
                             <textarea style="resize: none;width: 100%;" readonly="" ><?php echo $row->deskripsi; ?></textarea>
                         </div>
-                        <input type="button" style="float: right; margin-right: 20px; margin-bottom: 20px;" value="ADD" class="btn btn-success" onclick="add(6);">
                     </div>
                     <div class="col-md-1"></div>
                 </div>

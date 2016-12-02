@@ -41,10 +41,11 @@ $_SESSION['selected'] = array();
         <!--        SELECTION-->
         <div class="container-fluid" style="width: 50%; background-color: blue; height: 85%; float: left; overflow: scroll;" id="list"></div>
         <div class="container-fluid" style="width: 50%; background-color: cyan; height: 85%; float: left; overflow: scroll" id="selected"></div>
+        <img src="asset/btntambah.png" style="position: absolute; right: 50px; bottom: 30px; width: 7%;"/>
     </body>
     <script>
         function add(i) {
-            $("#selected").load("selected.php?id="+i);
+            $("#selected").load("selected.php?id=" + i);
         }
         $("#list").load("list.php");
         $("#selected").load("selected.php");
