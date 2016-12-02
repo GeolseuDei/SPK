@@ -163,7 +163,7 @@ while ($counter9 < 5) {
         $a = $_SESSION["matriksvij" . $counter91][$counter9];
         $data = ($a - $_SESSION['amax'][$counter9]);
         $data = $data * $data;
-        ${"tabelmaks" . $counter91}[$counter9] = $data;
+        $_SESSION["tabelmaks" . $counter91][$counter9] = $data;
         echo "matriks maks : " . $data;
         $counter91++;
     }
@@ -178,7 +178,7 @@ while ($counter10 < 5) {
         $a = $_SESSION["matriksvij" . $counter101][$counter10];
         $data = ($a - $_SESSION['amin'][$counter10]);
         $data = $data * $data;
-        ${"tabelmin" . $counter101}[$counter10] = $data;
+        $_SESSION["tabelmin" . $counter101][$counter10] = $data;
         echo "matriks min : " . $data;
         $counter101++;
     }
@@ -190,14 +190,14 @@ while ($counter11 != $counter) {
     $counter111 = 0;
     $data = 0;
     while ($counter111 < 5) {
-        echo ${"tabelmaks" . $counter11}[$counter111] . "+";
-        $data+=${"tabelmaks" . $counter11}[$counter111];
+        echo $_SESSION["tabelmaks" . $counter11][$counter111] . "+";
+        $data+=$_SESSION["tabelmaks" . $counter11][$counter111];
         $counter111++;
     }
     echo "break";
     $data = sqrt($data);
     echo "jawaban : " . $data;
-    $smaks[$counter11] = $data;
+    $_SESSION['smaks'][$counter11] = $data;
     $counter11++;
 }
 
@@ -206,12 +206,12 @@ while ($counter12 != $counter) {
     $counter121 = 0;
     $data = 0;
     while ($counter121 < 5) {
-        $data+=${"tabelmin" . $counter12}[$counter121];
+        $data+=$_SESSION["tabelmin" . $counter12][$counter121];
         $counter121++;
     }
     $data = sqrt($data);
     echo "smins : " . $data;
-    $smins[$counter12] = $data;
+    $_SESSION['smins'][$counter12] = $data;
     $counter12++;
 }
 
@@ -219,14 +219,15 @@ $query = "SELECT * FROM datawisata";
 $result = mysqli_query($conn, $query);
 $counter13 = 0;
 while ($row = mysqli_fetch_object($result)) {
-    $data = $smins[$counter13] / ($smaks[$counter13] + $smins[$counter13]);
+    $data = $_SESSION['smins'][$counter13] / ($_SESSION['smaks'][$counter13] + $_SESSION['smins'][$counter13]);
     echo "FINAL : " . $data;
-    $hasilakhir["$row->id"] = $data;
+    $_SESSION['hasilakhir']["$row->id"] = $data;
+    $_SESSION['hasilakhirnama']["$row->nama"] = $data;
     $counter13++;
 }
 
-arsort($hasilakhir);
-foreach ($hasilakhir as $x => $x_value) {
+arsort($_SESSION['hasilakhirnama']);
+foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
     echo "ID : " . $x . " Nilai : " . $x_value;
 }
 ?>

@@ -402,5 +402,92 @@ while ($row = mysqli_fetch_object($result)) {
     </tbody>
 </table>
 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Matriks maks</th>
+            <th>Akses</th>
+            <th>Kondisi Lingkungan</th>
+            <th>Hubungan dengan wisata lain</th>
+            <th>Kondisi cuaca</th>
+            <th>Biaya</th>
+            <th>Smaks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $countermmaks = 0;
+        while ($countermmaks != $counternama) {
+            ?>
+            <tr>
+                <td><?php echo $nama[$countermmaks]; ?></td>
+                <td><?php echo $_SESSION["tabelmaks" . $countermmaks][0]; ?></td>
+                <td><?php echo $_SESSION["tabelmaks" . $countermmaks][1]; ?></td>
+                <td><?php echo $_SESSION["tabelmaks" . $countermmaks][2]; ?></td>
+                <td><?php echo $_SESSION["tabelmaks" . $countermmaks][3]; ?></td>
+                <td><?php echo $_SESSION["tabelmaks" . $countermmaks][4]; ?></td>
+                <td><?php echo $_SESSION['smaks'][$countermmaks]; ?></td>
+            </tr>
+            <?php
+            $countermmaks++;
+        }
+        ?>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Matriks mins</th>
+            <th>Akses</th>
+            <th>Kondisi Lingkungan</th>
+            <th>Hubungan dengan wisata lain</th>
+            <th>Kondisi cuaca</th>
+            <th>Biaya</th>
+            <th>Smins</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $countermmins = 0;
+        while ($countermmins != $counternama) {
+            ?>
+            <tr>
+                <td><?php echo $nama[$countermmins]; ?></td>
+                <td><?php echo $_SESSION["tabelmin" . $countermmins][0]; ?></td>
+                <td><?php echo $_SESSION["tabelmin" . $countermmins][1]; ?></td>
+                <td><?php echo $_SESSION["tabelmin" . $countermmins][2]; ?></td>
+                <td><?php echo $_SESSION["tabelmin" . $countermmins][3]; ?></td>
+                <td><?php echo $_SESSION["tabelmin" . $countermmins][4]; ?></td>
+                <td><?php echo $_SESSION['smins'][$countermmins]; ?></td>
+            </tr>
+            <?php
+            $countermmins++;
+        }
+        ?>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ci*</th>
+            <th>Nilai</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
+            ?>
+            <tr>
+                <td><?php echo$x; ?></td>
+                <td><?php echo$x_value; ?></td>
+            </tr>
+            <?php
+        }
+        ?>
+    </tbody>
+</table>
+
 </body>
 </html>
