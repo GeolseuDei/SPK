@@ -1,3 +1,8 @@
+<?php
+session_start();
+$_SESSION['selected'] = array();
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -9,7 +14,7 @@
     <body>
 
         <!--        BOBOT-->   
-        <div class="row" style="background-color: yellow; text-align: center; height: 15%; padding-top: 20px; padding-bottom: 20px;">
+        <div class="row" style="background-color: yellow; text-align: center; height: 15%; padding-top: 1%; padding-bottom: 20px;">
             <form action="proseshitungan.php" method="POST">
                 <div class="col-md-1" style="text-align: right"> <h4>BOBOT :</h4></div>
                 <div class="col-md-2">
@@ -32,9 +37,16 @@
                 </div>
             </form>
         </div>
-        
-<!--        SELECTION-->
-<div class="container-fluid" style="width: 50%; background-color: blue; height: 85%; float: left;"></div>
-<div class="container-fluid" style="width: 50%; background-color: cyan; height: 85%; float: left;"></div>
+
+        <!--        SELECTION-->
+        <div class="container-fluid" style="width: 50%; background-color: blue; height: 85%; float: left; overflow: scroll;" id="list"></div>
+        <div class="container-fluid" style="width: 50%; background-color: cyan; height: 85%; float: left; overflow: scroll" id="selected"></div>
     </body>
+    <script>
+        function add(i) {
+            $("#selected").load("selected.php?id="+i);
+        }
+        $("#list").load("list.php");
+        $("#selected").load("selected.php");
+    </script>
 </html>
