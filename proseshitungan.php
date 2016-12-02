@@ -226,6 +226,7 @@ while ($row = mysqli_fetch_object($result)) {
     $counter13++;
 }
 
+arsort($_SESSION['hasilakhir']);
 arsort($_SESSION['hasilakhirnama']);
 foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
     echo "ID : " . $x . " Nilai : " . $x_value;
