@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION['selected'] = array();
+$_SESSION['counterarray'] = 1;
 ?>
 
 <html>
@@ -12,7 +13,6 @@ $_SESSION['selected'] = array();
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-
         <!--        BOBOT-->   
         <div class="row" style="background-color: yellow; text-align: center; height: 15%; padding-top: 1%; padding-bottom: 20px;">
             <form action="proseshitungan.php" method="POST">
@@ -39,12 +39,45 @@ $_SESSION['selected'] = array();
         </div>
 
         <!--        SELECTION-->
-        <div class="container-fluid" style="width: 50%; background-color: blue; height: 85%; float: left; overflow: scroll;" id="list"></div>
-        <div class="container-fluid" style="width: 50%; background-color: cyan; height: 85%; float: left; overflow: scroll" id="selected"></div>
+        <div class="container-fluid" style="width: 60%; background-color: blue; height: 85%; float: left; overflow: scroll;" id="list"></div>
+        <div class="container-fluid" style="width: 40%; background-color: cyan; height: 85%; float: left; overflow: scroll" id="selected"></div>
+        <img src="asset/btntambah.png" style="position: absolute; right: 50px; bottom: 30px; width: 7%;" onclick="loadtambahdata()" id="btntambah"/>
+
+
     </body>
     <script>
         function add(i) {
-            $("#selected").load("selected.php?id="+i);
+            $("#selected").load("selected.php?id=" + i);
+        }
+        function loadtambahdata() {
+            $("#selected").load("tambahdata.php", function () {
+                $("#btntambah").slideToggle();
+            });
+        }
+        function del(i) {
+            $("#selected").load("selected.php?delid=" + i);
+        }
+        function cek(i) {
+            $.post("prosestambahdata.php",
+                    {
+                        nama: $("#addnama").val(),
+                        jenis: $("#addkategori").val(),
+                        alamat: $("#addalamat").val(),
+                        desk: $("#adddesk").val(),
+                        akses: $("#addakses").val(),
+                        ling: $("#addling").val(),
+                        hub: $("#addhub").val(),
+                        cuaca: $("#addcuaca").val(),
+                        biaya: $("#addbiaya").val()
+                    },
+                    function ()
+                    {
+                        $("#list").load("list.php");
+                        $("#selected").load("selected.php", function (){
+                            $("#btntambah").slideToggle();
+                        });
+                    }
+            );
         }
         $("#list").load("list.php");
         $("#selected").load("selected.php");

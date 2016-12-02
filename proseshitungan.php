@@ -241,5 +241,7 @@ foreach ($_SESSION['hasilakhir'] as $x => $x_value) {
 }
 
 
-//header('Location: user.php');
+echo '<script type="text/javascript">
+           window.location = "user.php"
+      </script>';
 ?>

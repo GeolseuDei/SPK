@@ -2,7 +2,11 @@
 require './connection.php';
 session_start();
 if (isset($_GET['id'])) {
-    array_push($_SESSION['selected'], $_GET['id']);
+    $_SESSION['selected'][$_SESSION['counterarray']] = $_GET['id'];
+    $_SESSION['counterarray']++;
+}
+if (isset($_GET['delid'])){
+    unset($_SESSION['selected'][$_GET['delid']]);
 }
 ?>
 <html>
@@ -16,7 +20,7 @@ if (isset($_GET['id'])) {
     <body>
         <!--        SHOW BY OD-->
         <?php
-        foreach ($_SESSION['selected'] as $id) {
+        foreach ($_SESSION['selected'] as $key => $id) { 
             $query = "SELECT * FROM datawisata INNER JOIN jeniswisata on datawisata.jeniswisata=jeniswisata.id where datawisata.id = $id";
             $result = mysqli_query($conn, $query);
             while ($row = mysqli_fetch_object($result)) {
@@ -38,7 +42,9 @@ if (isset($_GET['id'])) {
                         <div style="border: 1px solid black; margin-left: 20px; margin-right: 20px; margin-bottom: 10px;">
                             <textarea style="resize: none;width: 100%;" readonly="" ><?php echo $row->deskripsi; ?></textarea>
                         </div>
-                        <input type="button" style="float: right; margin-right: 20px; margin-bottom: 20px;" value="ADD" class="btn btn-success" onclick="add(6);">
+                        <div>
+                            <input type="button" style="float: right; margin-right: 20px; margin-bottom: 20px;" value="CANCEL" class="btn btn-danger" onclick="del(<?php echo $key;?>);">
+                        </div>
                     </div>
                     <div class="col-md-1"></div>
                 </div>
