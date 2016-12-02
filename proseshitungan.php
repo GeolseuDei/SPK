@@ -8,22 +8,29 @@ $dbase = "spk";
 $conn = mysqli_connect($server, $username, $password);
 $database = mysqli_select_db($conn, $dbase);
 
-$wakses = 50;
-$wcuaca = 50;
-$wwisatalain = 50;
-$wling = 50;
-$wbiaya = 50;
-$totalw = $wakses + $wcuaca + $wwisatalain + $wling + $wbiaya;
+$_SESSION["akses"]=50;
+$_SESSION["cuaca"]=50;
+$_SESSION["wisatalain"]=50;
+$_SESSION["ling"]=50;
+$_SESSION["biaya"]=50;
 
-$bobotnormal[0] = ($wakses / $totalw) * 100;
-$bobotnormal[1] = ($wling / $totalw) * 100;
-$bobotnormal[2] = ($wwisatalain / $totalw) * 100;
-$bobotnormal[3] = ($wcuaca / $totalw) * 100;
-$bobotnormal[4] = ($wbiaya / $totalw) * 100;
-$_SESSION[totalwn] = $bobotnormal[0] + $bobotnormal[1] + $bobotnormal[2] + $bobotnormal[3] + $bobotnormal[4];
+$_SESSION["totalw"] = $_SESSION["akses"]+$_SESSION["cuaca"]+$_SESSION["wisatalain"]+$_SESSION["ling"]+$_SESSION["biaya"];
+
+$wakses = $_SESSION['akses'];
+$wcuaca = $_SESSION['cuaca'];
+$wwisatalain = $_SESSION['wisatalain'];
+$wling = $_SESSION['ling'];
+$wbiaya = $_SESSION['biaya'];
+
+$_SESSION['bobotnormal'][0] = ($wakses / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][1] = ($wling / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][2] = ($wwisatalain / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][3] = ($wcuaca / $_SESSION['totalw']) * 100;
+$_SESSION['bobotnormal'][4] = ($wbiaya / $_SESSION['totalw']) * 100;
+$_SESSION['totalwn'] = $_SESSION['bobotnormal'][0] + $_SESSION['bobotnormal'][1] + $_SESSION['bobotnormal'][2] + $_SESSION['bobotnormal'][3] + $_SESSION['bobotnormal'][4];
 
 for ($i = 0; $i < 5; $i++) {
-    echo "bobot normal : " . $bobotnormal[$i];
+    echo "bobot normal : " . $_SESSION['bobotnormal'][$i];
 }
 $query = "SELECT * FROM datawisata";
 $result = mysqli_query($conn, $query);
@@ -47,8 +54,8 @@ while ($counter2 != $counter) {
         $data = ${"wisata" . $counter2}[$counter21];
         echo 'sebelum kuadrat : ' . $data;
         $data = $data * $data;
-        ${"wisatakuadrat" . $counter2}[$counter21] = $data;
-        echo "KUADRAT : " . ${"wisatakuadrat" . $counter2}[$counter21];
+        $_SESSION["wisatakuadrat" . $counter2][$counter21] = $data;
+        echo "KUADRAT : " . $_SESSION["wisatakuadrat" . $counter2][$counter21];
         $counter21++;
     }
     $counter2++;
@@ -59,18 +66,18 @@ while ($counter3 < 5) {
     $counter31 = 0;
     $data = 0;
     while ($counter31 != $counter) {
-        $data+=${"wisatakuadrat" . $counter31}[$counter3];
+        $data+=$_SESSION["wisatakuadrat" . $counter31][$counter3];
         $counter31++;
     }
-    $totalwisatakuadrat[$counter3] = $data;
-    echo "total kuadrat : " . $totalwisatakuadrat[$counter3];
+    $_SESSION['totalwisatakuadrat'][$counter3] = $data;
+    echo "total kuadrat : " . $_SESSION['totalwisatakuadrat'][$counter3];
     $counter3++;
 }
 
 $counter4 = 0;
 while ($counter4 < 5) {
-    $akartotalwisatakuadrat[$counter4] = sqrt($totalwisatakuadrat[$counter4]);
-    echo "akar" . $akartotalwisatakuadrat[$counter4] . "\n";
+    $_SESSION['akartotalwisatakuadrat'][$counter4] = sqrt($_SESSION['totalwisatakuadrat'][$counter4]);
+    echo "akar" . $_SESSION['akartotalwisatakuadrat'][$counter4] . "\n";
     $counter4++;
 }
 
@@ -78,8 +85,8 @@ $counter5 = 0;
 while ($counter5 < 5) {
     $counter51 = 0;
     while ($counter51 != $counter) {
-        $data = ${"wisata" . $counter51}[$counter5] / $akartotalwisatakuadrat[$counter5];
-        ${"matriksrij" . $counter51}[$counter5] = $data;
+        $data = ${"wisata" . $counter51}[$counter5] / $_SESSION['akartotalwisatakuadrat'][$counter5];
+        $_SESSION["matriksrij" . $counter51][$counter5] = $data;
         echo "tabel r ij :" . $data;
         $counter51++;
     }
@@ -90,9 +97,9 @@ $counter6 = 0;
 while ($counter6 < 5) {
     $counter61 = 0;
     while ($counter61 != $counter) {
-        $data = ${"matriksrij" . $counter61}[$counter6] * $bobotnormal[$counter6];
+        $data = $_SESSION["matriksrij" . $counter61][$counter6] * $_SESSION['bobotnormal'][$counter6];
         echo "Matrik VIJ : " . $data;
-        ${"matriksvij" . $counter61}[$counter6] = $data;
+        $_SESSION["matriksvij" . $counter61][$counter6] = $data;
         $counter61++;
     }
     $counter6++;
@@ -103,59 +110,60 @@ while ($counter7 < 4) {
     $counter71 = 0;
     $data = 0;
     while ($counter71 != $counter) {
-        if (${"matriksvij" . $counter71}[$counter7] > $data) {
-            $data = ${"matriksvij" . $counter71}[$counter7];
+        if ($_SESSION["matriksvij" . $counter71][$counter7] > $data) {
+            $data = $_SESSION["matriksvij" . $counter71][$counter7];
         }
-        $amax[$counter7] = $data;
+        $_SESSION['amax'][$counter7] = $data;
         $counter71++;
     }
-    echo "AMAX : " . $amax[$counter7];
+    echo "AMAX : " . $_SESSION['amax'][$counter7];
     $counter7++;
 }
 $counter71 = 0;
 $data = 999999;
 while ($counter71 != $counter) {
-    if (${"matriksvij" . $counter71}[4] < $data) {
-        $data = ${"matriksvij" . $counter71}[4];
+    if ($_SESSION["matriksvij" . $counter71][4] < $data) {
+        $data = $_SESSION["matriksvij" . $counter71][4];
     }
-    $amax[4] = $data;
+    $_SESSION['amax'][4] = $data;
     $counter71++;
 }
-echo "AMAX : " . $amax[4];
+echo "AMAX : " . $_SESSION['amax'][4];
+
 $counter8 = 0;
 while ($counter8 < 4) {
     $counter81 = 0;
     $data = 9999999999;
     while ($counter81 != $counter) {
-        if (${"matriksvij" . $counter81}[$counter8] < $data) {
-            $data = ${"matriksvij" . $counter81}[$counter8];
+        if ($_SESSION["matriksvij" . $counter81][$counter8] < $data) {
+            $data = $_SESSION["matriksvij" . $counter81][$counter8];
         }
         $counter81++;
     }
-    $amin[$counter8] = $data;
-    echo "AMIN : " . $amin[$counter8];
+    $_SESSION['amin'][$counter8] = $data;
+    echo "AMIN : " . $_SESSION['amin'][$counter8];
     $counter8++;
 }
 $counter81 = 0;
 $data = 0;
 while ($counter81 != $counter) {
-    if (${"matriksvij" . $counter81}[4] > $data) {
-        $data = ${"matriksvij" . $counter81}[4];
+    if ($_SESSION["matriksvij" . $counter81][4] > $data) {
+        $data = $_SESSION["matriksvij" . $counter81][4];
     }
     $counter81++;
 }
-$amin[4] = $data;
-echo "AMIN : " . $amin[4];
+$_SESSION['amin'][4] = $data;
+echo "AMIN : " . $_SESSION['amin'][4];
 
 $counter9 = 0;
 while ($counter9 < 5) {
     $counter91 = 0;
     while ($counter91 != $counter) {
         $data = 0;
-        $a = ${"matriksvij" . $counter91}[$counter9];
-        $data = ($a - $amax[$counter9]);
+        $a = $_SESSION["matriksvij" . $counter91][$counter9];
+        $data = ($a - $_SESSION['amax'][$counter9]);
         $data = $data * $data;
-        ${"tabelmaks" . $counter91}[$counter9] = $data;
+        $_SESSION["tabelmaks" . $counter91][$counter9] = $data;
         echo "matriks maks : " . $data;
         $counter91++;
     }
@@ -167,10 +175,10 @@ while ($counter10 < 5) {
     $counter101 = 0;
     while ($counter101 != $counter) {
         $data = 0;
-        $a = ${"matriksvij" . $counter101}[$counter10];
-        $data = ($a - $amin[$counter10]);
+        $a = $_SESSION["matriksvij" . $counter101][$counter10];
+        $data = ($a - $_SESSION['amin'][$counter10]);
         $data = $data * $data;
-        ${"tabelmin" . $counter101}[$counter10] = $data;
+        $_SESSION["tabelmin" . $counter101][$counter10] = $data;
         echo "matriks min : " . $data;
         $counter101++;
     }
@@ -182,14 +190,14 @@ while ($counter11 != $counter) {
     $counter111 = 0;
     $data = 0;
     while ($counter111 < 5) {
-        echo ${"tabelmaks" . $counter11}[$counter111] . "+";
-        $data+=${"tabelmaks" . $counter11}[$counter111];
+        echo $_SESSION["tabelmaks" . $counter11][$counter111] . "+";
+        $data+=$_SESSION["tabelmaks" . $counter11][$counter111];
         $counter111++;
     }
     echo "break";
     $data = sqrt($data);
     echo "jawaban : " . $data;
-    $smaks[$counter11] = $data;
+    $_SESSION['smaks'][$counter11] = $data;
     $counter11++;
 }
 
@@ -198,12 +206,12 @@ while ($counter12 != $counter) {
     $counter121 = 0;
     $data = 0;
     while ($counter121 < 5) {
-        $data+=${"tabelmin" . $counter12}[$counter121];
+        $data+=$_SESSION["tabelmin" . $counter12][$counter121];
         $counter121++;
     }
     $data = sqrt($data);
     echo "smins : " . $data;
-    $smins[$counter12] = $data;
+    $_SESSION['smins'][$counter12] = $data;
     $counter12++;
 }
 
@@ -211,14 +219,16 @@ $query = "SELECT * FROM datawisata";
 $result = mysqli_query($conn, $query);
 $counter13 = 0;
 while ($row = mysqli_fetch_object($result)) {
-    $data = $smins[$counter13] / ($smaks[$counter13] + $smins[$counter13]);
+    $data = $_SESSION['smins'][$counter13] / ($_SESSION['smaks'][$counter13] + $_SESSION['smins'][$counter13]);
     echo "FINAL : " . $data;
-    $hasilakhir["$row->id"] = $data;
+    $_SESSION['hasilakhir']["$row->id"] = $data;
+    $_SESSION['hasilakhirnama']["$row->nama"] = $data;
     $counter13++;
 }
 
-arsort($hasilakhir);
-foreach ($hasilakhir as $x => $x_value) {
+arsort($_SESSION['hasilakhir']);
+arsort($_SESSION['hasilakhirnama']);
+foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
     echo "ID : " . $x . " Nilai : " . $x_value;
 }
 ?>
