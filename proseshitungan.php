@@ -222,14 +222,13 @@ while ($row = mysqli_fetch_object($result)) {
     $data = $_SESSION['smins'][$counter13] / ($_SESSION['smaks'][$counter13] + $_SESSION['smins'][$counter13]);
     echo "FINAL : " . $data;
     $_SESSION['hasilakhir']["$row->id"] = $data;
-    $_SESSION['hasilakhirnama']["$row->nama"] = $data;
+    $_SESSION['hasilakhir2']["$row->nama"] = $data;
     $counter13++;
 }
 
 arsort($_SESSION['hasilakhir']);
-arsort($_SESSION['hasilakhirnama']);
-foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
-    echo "ID : " . $x . " Nilai : " . $x_value;
+foreach ($_SESSION['hasilakhir'] as $x => $x_value) {
+    echo "Nama : " . $x . " Nilai : " . $x_value;
 }
 ?>
 

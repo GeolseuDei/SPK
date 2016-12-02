@@ -105,49 +105,41 @@ while ($row = mysqli_fetch_object($result)) {
                     <textarea rows="5" cols="50"></textarea>
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-md-2" style="text-align: right;">
-
-                    Ranking :
-                </div>
-                <div class="col-md-9">
-
-                    <select>
-
-                        <option value="a">a</option>
-                        <option value="a">a</option>
-                        <option value="a">a</option>
-                        <option value="a">a</option>
-                    </select>
-                </div>
-            </div>
         </div>
-        <div class="row">
 
-            <div class="col-md-1"></div>
-            <div class="col-md-10" style="background-color: yellow;">
-
+        <?php
+        foreach ($_SESSION['hasilakhir'] as $x => $x_value) {
+            $query = "SELECT * FROM datawisata INNER JOIN jeniswisata on datawisata.jeniswisata=jeniswisata.id WHERE datawisata.id = $x";
+            $result = mysqli_query($conn, $query);
+            while ($row = mysqli_fetch_object($result)) {
+                ?>
                 <div class="row">
 
-                    <div class="col-md-4" style="text-align: center;">
-                        NAMA WISATA
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10" style="background-color: yellow;">
+
+                        <div class="row">
+
+                            <div class="col-md-4" style="text-align: center;">
+                                <?php echo $row->nama;?>
+                            </div>
+                            <div class="col-md-4" style="text-align: center;">
+                                <?php echo $row->jenis;?>
+                            </div>
+                        </div>
+                        <div>
+                            <?php echo $row->deskripsi;?>
+                        </div>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">TULIS KOMEN</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">VIEW KOMEN</button>
                     </div>
-                    <div class="col-md-4" style="text-align: center;">
-                        JENIS WISATA
-                    </div>
-                    <div class="col-md-4" style="text-align: center;">
-                        RATING
-                    </div>
+                    <div class="col-md-1"></div>
                 </div>
-                <div>
-                    DESKRIPSI
-                </div>
-                <button type="button" class="btn btn-success" data-dismiss="modal">TULIS KOMEN</button>
-                <button type="button" class="btn btn-success" data-dismiss="modal">VIEW KOMEN</button>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
+                <?php
+            }
+        }
+        ?>
+
 
         <table class="table table-striped">
             <thead>
@@ -477,7 +469,7 @@ while ($row = mysqli_fetch_object($result)) {
     </thead>
     <tbody>
         <?php
-        foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
+        foreach ($_SESSION['hasilakhir2'] as $x => $x_value) {
             ?>
             <tr>
                 <td><?php echo$x; ?></td>
