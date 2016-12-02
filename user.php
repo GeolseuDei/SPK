@@ -293,5 +293,114 @@ while ($row = mysqli_fetch_object($result)) {
             ?>
         </tbody>
     </table>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Matriks R ij</th>
+                <th>Akses</th>
+                <th>Kondisi Lingkungan</th>
+                <th>Hubungan dengan wisata lain</th>
+                <th>Kondisi cuaca</th>
+                <th>Biaya</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $counterrij = 0;
+            while ($counterrij != $counternama) {
+                echo '<tr>';
+                ?>
+            <td><?php echo $nama[$counterrij]; ?></td>
+            <td><?php echo $_SESSION["matriksrij" . $counterrij][0] ?></td>
+            <td><?php echo $_SESSION["matriksrij" . $counterrij][1] ?></td>
+            <td><?php echo $_SESSION["matriksrij" . $counterrij][2] ?></td>
+            <td><?php echo $_SESSION["matriksrij" . $counterrij][3] ?></td>
+            <td><?php echo $_SESSION["matriksrij" . $counterrij][4] ?></td>
+            <?php
+            $counterrij++;
+            echo '</tr>';
+        }
+        ?>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Matriks V ij</th>
+            <th>Akses</th>
+            <th>Kondisi Lingkungan</th>
+            <th>Hubungan dengan wisata lain</th>
+            <th>Kondisi cuaca</th>
+            <th>Biaya</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $countervij = 0;
+        while ($countervij != $counternama) {
+            echo '<tr>';
+            ?>
+        <td><?php echo $nama[$countervij]; ?></td>
+        <td><?php echo $_SESSION["matriksvij" . $countervij][0] ?></td>
+        <td><?php echo $_SESSION["matriksvij" . $countervij][1] ?></td>
+        <td><?php echo $_SESSION["matriksvij" . $countervij][2] ?></td>
+        <td><?php echo $_SESSION["matriksvij" . $countervij][3] ?></td>
+        <td><?php echo $_SESSION["matriksvij" . $countervij][4] ?></td>
+        <?php
+        $countervij++;
+        echo '</tr>';
+    }
+    ?>
+</tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>A*</th>
+            <th>Akses</th>
+            <th>Kondisi Lingkungan</th>
+            <th>Hubungan dengan wisata lain</th>
+            <th>Kondisi cuaca</th>
+            <th>Biaya</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo "A*"; ?></td>
+            <td><?php echo $_SESSION['amax'][0] ?></td>
+            <td><?php echo $_SESSION['amax'][1] ?></td>
+            <td><?php echo $_SESSION['amax'][2] ?></td>
+            <td><?php echo $_SESSION['amax'][3] ?></td>
+            <td><?php echo $_SESSION['amax'][4] ?></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>A'</th>
+            <th>Akses</th>
+            <th>Kondisi Lingkungan</th>
+            <th>Hubungan dengan wisata lain</th>
+            <th>Kondisi cuaca</th>
+            <th>Biaya</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?php echo "A*"; ?></td>
+            <td><?php echo $_SESSION['amin'][0] ?></td>
+            <td><?php echo $_SESSION['amin'][1] ?></td>
+            <td><?php echo $_SESSION['amin'][2] ?></td>
+            <td><?php echo $_SESSION['amin'][3] ?></td>
+            <td><?php echo $_SESSION['amin'][4] ?></td>
+        </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
