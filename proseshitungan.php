@@ -238,6 +238,6 @@ foreach ($_SESSION['hasilakhir'] as $x => $x_value) {
 }
 
 
-//header('Location: user.php');
+header('Location: user.php');
 
 ?>

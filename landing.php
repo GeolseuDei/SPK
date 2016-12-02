@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,8 +5,8 @@ and open the template in the editor.
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+        <!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body style="background-color: #78909C">
@@ -48,48 +42,52 @@ and open the template in the editor.
             <div class="col-md-4"></div>
         </div>
 
-        
-<!--        MODAL-->
+
+        <!--        MODAL-->
         <div id="modallogin" class="modal fade" role="dialog">
-            
+
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     
-                    <div class="modal-header">
+                    <form action="login.php" method="POST">
                         
-                        <h4 class="modal-title">LOGIN</h4>
-                    </div>
-                    <div class="modal-body">
-                        
-                        <div class="row">
-                            
-                            <div class="col-md-3" style="text-align: right;">
-                                
-                                USERNAME :
+                        <div class="modal-header">
+
+                            <h4 class="modal-title">LOGIN</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+
+                                <div class="col-md-3" style="text-align: right;">
+
+                                    USERNAME :
+                                </div>
+                                <div class="col-md-9">
+
+                                    <input type="text" style="width: 100%;" name="uname"/>
+                                </div>
                             </div>
-                            <div class="col-md-9">
-                                
-                                <input type="text" style="width: 100%;"/>
+                            <div class="row" style="margin-top: 20px;">
+
+                                <div class="col-md-3" style="text-align: right;">
+
+                                    PASSWORD :
+                                </div>
+                                <div class="col-md-9">
+
+                                    <input type="password" style="width: 100%;" name="pass"/>
+                                </div>
                             </div>
                         </div>
-                        <div class="row" style="margin-top: 20px;">
-                            
-                            <div class="col-md-3" style="text-align: right;">
-                                
-                                PASSWORD :
-                            </div>
-                            <div class="col-md-9">
-                                
-                                <input type="password" style="width: 100%;"/>
-                            </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="LOGIN" class="btn btn-success"/>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">LOGIN</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">CANCEL</button>
-                    </div>
+                    </form>
+
                 </div>
 
             </div>
