@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 $username = "root";
 $password = "";
@@ -8,13 +9,20 @@ $dbase = "spk";
 $conn = mysqli_connect($server, $username, $password);
 $database = mysqli_select_db($conn, $dbase);
 
-$_SESSION["akses"]=50;
-$_SESSION["cuaca"]=50;
-$_SESSION["wisatalain"]=50;
-$_SESSION["ling"]=50;
-$_SESSION["biaya"]=50;
+unset($_SESSION['hasilakhir']);
 
-$_SESSION["totalw"] = $_SESSION["akses"]+$_SESSION["cuaca"]+$_SESSION["wisatalain"]+$_SESSION["ling"]+$_SESSION["biaya"];
+//$_SESSION["akses"]=50;
+//$_SESSION["cuaca"]=50;
+//$_SESSION["wisatalain"]=50;
+//$_SESSION["ling"]=50;
+//$_SESSION["biaya"]=50;
+$_SESSION["akses"] = $_POST["iakses"];
+$_SESSION["cuaca"] = $_POST["icuaca"];
+$_SESSION["wisatalain"] = $_POST["iwisatalain"];
+$_SESSION["ling"] = $_POST["iling"];
+$_SESSION["biaya"] = $_POST["ibiaya"];
+
+$_SESSION["totalw"] = $_SESSION["akses"] + $_SESSION["cuaca"] + $_SESSION["wisatalain"] + $_SESSION["ling"] + $_SESSION["biaya"];
 
 $wakses = $_SESSION['akses'];
 $wcuaca = $_SESSION['cuaca'];
@@ -32,15 +40,15 @@ $_SESSION['totalwn'] = $_SESSION['bobotnormal'][0] + $_SESSION['bobotnormal'][1]
 for ($i = 0; $i < 5; $i++) {
     echo "bobot normal : " . $_SESSION['bobotnormal'][$i];
 }
-$query = "SELECT * FROM datawisata";
-$result = mysqli_query($conn, $query);
-$counter = 0;
 
-//input data ke array
-while ($row = mysqli_fetch_object($result)) {
-//            echo $row->aksesibilitas;
-    ${"wisata" . $counter} = array($row->aksesibilitas, $row->kondisi_lingkungan, $row->hub_dgn_wisata_lain, $row->kondisi_cuaca, $row->biaya);
-    $counter++;
+$counter = 0;
+foreach ($_SESSION['selected'] as $id) {
+    $query = "SELECT * FROM datawisata where id = $id";
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_object($result)) {
+        ${"wisata" . $counter} = array($row->aksesibilitas, $row->kondisi_lingkungan, $row->hub_dgn_wisata_lain, $row->kondisi_cuaca, $row->biaya);
+        $counter++;
+    }
 }
 
 
@@ -214,22 +222,24 @@ while ($counter12 != $counter) {
     $_SESSION['smins'][$counter12] = $data;
     $counter12++;
 }
-
-$query = "SELECT * FROM datawisata";
-$result = mysqli_query($conn, $query);
-$counter13 = 0;
-while ($row = mysqli_fetch_object($result)) {
-    $data = $_SESSION['smins'][$counter13] / ($_SESSION['smaks'][$counter13] + $_SESSION['smins'][$counter13]);
-    echo "FINAL : " . $data;
-    $_SESSION['hasilakhir']["$row->id"] = $data;
-    $_SESSION['hasilakhirnama']["$row->nama"] = $data;
-    $counter13++;
+foreach ($_SESSION['selected'] as $id) {
+    $query = "SELECT * FROM datawisata where id=$id";
+    $result = mysqli_query($conn, $query);
+    $counter13 = 0;
+    while ($row = mysqli_fetch_object($result)) {
+        $data = $_SESSION['smins'][$counter13] / ($_SESSION['smaks'][$counter13] + $_SESSION['smins'][$counter13]);
+        echo "FINAL : " . $data;
+        $_SESSION['hasilakhir']["$row->id"] = $data;
+        $counter13++;
+    }
 }
+
 
 arsort($_SESSION['hasilakhir']);
-arsort($_SESSION['hasilakhirnama']);
-foreach ($_SESSION['hasilakhirnama'] as $x => $x_value) {
-    echo "ID : " . $x . " Nilai : " . $x_value;
+foreach ($_SESSION['hasilakhir'] as $x => $x_value) {
+    echo "Nama : " . $x . " Nilai : " . $x_value;
 }
-?>
 
+
+//header('Location: user.php');
+?>
