@@ -1,4 +1,5 @@
 <?php
+session_start();
 require './connection.php';
 
 $uname = $_POST['uname'];
@@ -12,7 +13,8 @@ while ($row = mysqli_fetch_object($result)) {
 if($_SESSION['login']==true){
     header('Location: main.php');
 } else {
-    header('Location: landing.php');
+    unset($_SESSION['login']);
+    header('Location: index.php');
 }
 ?>
 

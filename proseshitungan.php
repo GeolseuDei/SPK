@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $username = "root";
 $password = "";
@@ -50,8 +49,7 @@ foreach ($_SESSION['selected'] as $id) {
         $counter++;
     }
 }
-
-
+?><div>TABEL KUADRAT</div><?php
 //hitung tabel 2 = tabel1 kuadrat
 $counter2 = 0;
 while ($counter2 != $counter) {
@@ -68,7 +66,7 @@ while ($counter2 != $counter) {
     }
     $counter2++;
 }
-
+?><div>TOTAL TABEL KUADRAT</div><?php
 $counter3 = 0;
 while ($counter3 < 5) {
     $counter31 = 0;
@@ -81,14 +79,14 @@ while ($counter3 < 5) {
     echo "total kuadrat : " . $_SESSION['totalwisatakuadrat'][$counter3];
     $counter3++;
 }
-
+?><div>AKAR TOTAL TABEL KUADRAT</div><?php
 $counter4 = 0;
 while ($counter4 < 5) {
     $_SESSION['akartotalwisatakuadrat'][$counter4] = sqrt($_SESSION['totalwisatakuadrat'][$counter4]);
     echo "akar" . $_SESSION['akartotalwisatakuadrat'][$counter4] . "\n";
     $counter4++;
 }
-
+?><div>MATRIKS RIJ</div><?php
 $counter5 = 0;
 while ($counter5 < 5) {
     $counter51 = 0;
@@ -100,7 +98,7 @@ while ($counter5 < 5) {
     }
     $counter5++;
 }
-
+?><div>MATRIKS VIJ</div><?php
 $counter6 = 0;
 while ($counter6 < 5) {
     $counter61 = 0;
@@ -112,7 +110,7 @@ while ($counter6 < 5) {
     }
     $counter6++;
 }
-
+?><div>AMAX</div><?php
 $counter7 = 0;
 while ($counter7 < 4) {
     $counter71 = 0;
@@ -137,7 +135,7 @@ while ($counter71 != $counter) {
     $counter71++;
 }
 echo "AMAX : " . $_SESSION['amax'][4];
-
+?><div>AMIN</div><?php
 $counter8 = 0;
 while ($counter8 < 4) {
     $counter81 = 0;
@@ -162,7 +160,7 @@ while ($counter81 != $counter) {
 }
 $_SESSION['amin'][4] = $data;
 echo "AMIN : " . $_SESSION['amin'][4];
-
+?><div>MATRIKS MAKS</div><?php
 $counter9 = 0;
 while ($counter9 < 5) {
     $counter91 = 0;
@@ -177,7 +175,7 @@ while ($counter9 < 5) {
     }
     $counter9++;
 }
-
+?><div>MATRIKS MIN</div><?php
 $counter10 = 0;
 while ($counter10 < 5) {
     $counter101 = 0;
@@ -192,7 +190,7 @@ while ($counter10 < 5) {
     }
     $counter10++;
 }
-
+?><div>SMAKS</div><?php
 $counter11 = 0;
 while ($counter11 != $counter) {
     $counter111 = 0;
@@ -208,7 +206,7 @@ while ($counter11 != $counter) {
     $_SESSION['smaks'][$counter11] = $data;
     $counter11++;
 }
-
+?><div>SMINS</div><?php
 $counter12 = 0;
 while ($counter12 != $counter) {
     $counter121 = 0;
@@ -222,16 +220,21 @@ while ($counter12 != $counter) {
     $_SESSION['smins'][$counter12] = $data;
     $counter12++;
 }
+?><div>HASIL AKHIR</div><?php
+$counter13 = 0;
 foreach ($_SESSION['selected'] as $id) {
     $query = "SELECT * FROM datawisata where id=$id";
     $result = mysqli_query($conn, $query);
-    $counter13 = 0;
+ 
     while ($row = mysqli_fetch_object($result)) {
+        echo "counter test :".$countertest;
+        echo $_SESSION['smins'][$counter13] . "dibagi" . $_SESSION['smaks'][$counter13] . "tambah" . $_SESSION['smins'][$counter13];
         $data = $_SESSION['smins'][$counter13] / ($_SESSION['smaks'][$counter13] + $_SESSION['smins'][$counter13]);
         echo "FINAL : " . $data;
         $_SESSION['hasilakhir']["$row->id"] = $data;
         $counter13++;
     }
+    print_r($_SESSION['hasilakhir']);
 }
 
 
