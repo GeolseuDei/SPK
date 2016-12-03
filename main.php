@@ -41,7 +41,12 @@ $_SESSION['counterarray'] = 1;
         <!--        SELECTION-->
         <div class="container-fluid" style="width: 60%; background-color: blue; height: 85%; float: left; overflow: scroll;" id="list"></div>
         <div class="container-fluid" style="width: 40%; background-color: cyan; height: 85%; float: left; overflow: scroll" id="selected"></div>
-        <img src="asset/btntambah.png" style="position: absolute; right: 50px; bottom: 30px; width: 7%;" onclick="loadtambahdata()" id="btntambah"/>
+
+        <?php if (isset($_SESSION['login'])) { ?>
+            <img src="asset/btntambah.png" style="position: absolute; right: 50px; bottom: 30px; width: 7%;" onclick="loadtambahdata()" id="btntambah"/>
+            <?php
+        }
+        ?>
 
 
     </body>
@@ -73,12 +78,30 @@ $_SESSION['counterarray'] = 1;
                     function ()
                     {
                         $("#list").load("list.php");
-                        $("#selected").load("selected.php", function (){
+                        $("#selected").load("selected.php", function () {
                             $("#btntambah").slideToggle();
                         });
                     }
             );
         }
+        function showcomment(i) {
+            $("#plccomment" + i).slideToggle();
+        }
+
+        function postcomment(i) {
+            $.post("postcomment.php",
+                    {
+                        isi: $("#txtcomment" + i).val(),
+                        tempat: $("#did" + i).val()
+                    },
+                    function ()
+                    {
+                        $("#list").load("list.php");
+                    }
+            );
+        }
+
+
         $("#list").load("list.php");
         $("#selected").load("selected.php");
     </script>
